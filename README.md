@@ -30,7 +30,7 @@ Si vous disposez des fichiers des photos des élèves, vous pouvez aussi [créer
 
 Affichez la barre de vos favoris et glisser-déposer le lien ci-dessous dans vos favoris :
 
-<a href="javascript:(function(){const script=document.createElement('script');script.src='https://trombiquiz.forge.apps.education.fr/trombiquiz.min.js';document.body.appendChild(script);})();">Trombiquiz</a>
+<a href="javascript:(function(){const script=document.createElement('script');script.src='https://trombiquiz.forge.apps.education.fr/trombiquiz.min.js?'+Date.now();document.body.appendChild(script);})();">Trombiquiz</a>
 
 ## 2/ Afficher le trombinoscope de ses élèves
 
