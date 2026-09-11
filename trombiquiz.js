@@ -63,14 +63,16 @@
 
 	// Une photo d'élève est une image visible, assez grande, au format portrait
 	// ou carré, hors barres de navigation, et dont l'adresse ne trahit pas un
-	// élément d'interface (logo, icône…).
+	// élément d'interface (logo, icône…). Plancher à 0,4 et non 0,5 : Cabanga
+	// sert des photos 150×324 (ratio 0,46), vérifié en direct le 2026-09-11,
+	// qu'un plancher à 0,5 rejetait presque toutes sauf une.
 	function ressembleAUnePhoto(element) {
 		const rect = element.getBoundingClientRect();
 		if (rect.width < 40 || rect.height < 40) {
 			return false;
 		}
 		const proportion = rect.width / rect.height;
-		if (proportion < 0.5 || proportion > 1.6) {
+		if (proportion < 0.4 || proportion > 1.6) {
 			return false;
 		}
 		if (estDansInterface(element)) {
