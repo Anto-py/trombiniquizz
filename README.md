@@ -19,6 +19,7 @@ Trombiquiz fonctionne directement avec les applications suivantes :
 - Ecole Directe
 - Oneconnect
 - Moodle / Magistère
+- Cabanga (voir plus bas : détection automatique, puis vérification de la liste)
 
 Si vous utilisez un autre logiciel : vous pouvez me demander de l'intégrer à ce script (voir tout en bas de cette page).
 
@@ -32,6 +33,8 @@ Affichez la barre de vos favoris et glisser-déposer le lien ci-dessous dans vos
 
 <a href="javascript:(function(){const script=document.createElement('script');script.src='https://trombiquiz.forge.apps.education.fr/trombiquiz.min.js?'+Date.now();document.body.appendChild(script);})();">Trombiquiz</a>
 
+> **Cette copie est une version modifiée**, qui ajoute la compatibilité Cabanga. Le lien ci-dessus va chercher la version officielle sur la Forge, qui ne connaît pas Cabanga. Pour installer cette version-ci : ouvrez `trombiquizBookmarklet.js`, copiez tout son contenu, et collez-le comme adresse d'un nouveau favori. Le script y est contenu en entier, il n'y a rien à héberger.
+
 ## 2/ Afficher le trombinoscope de ses élèves
 
 Par exemple sur Pronote (version en ligne) :
@@ -41,6 +44,16 @@ Cliquez sur “Mes données” / “Classes/élèves” / “Trombinoscope”
 ![](img/helpPronote.png)
 
 Choisissez la classe et cliquez sur votre nouveau favori “Trombiquiz”
+
+## Le cas de Cabanga
+
+Cabanga est une application fermée, dont la structure interne n'est pas publique et peut changer. Trombiquiz n'y lit donc pas les photos à un endroit connu : il les **repère à leur apparence**, c'est-à-dire les images visibles au format portrait, hors barres de navigation, et prend pour nom le texte qui les accompagne.
+
+Comme cette reconnaissance est une supposition, une page de vérification s'ouvre avant le quiz : chaque nom y est corrigeable, et tout ce qui n'est pas un élève se retire d'un clic. Le quiz ne démarre qu'une fois la liste validée, par un bouton qui choisit aussi l'ordre.
+
+> Avant de cliquer sur le favori, faites défiler tout le trombinoscope jusqu'en bas : une photo que le navigateur n'a pas encore chargée est invisible pour Trombiquiz.
+
+Cette détection automatique sert aussi de filet pour les logiciels qui ne sont pas dans la liste ci-dessus : elle s'essaie sur n'importe quelle page, et se contente de dire qu'elle n'a rien trouvé quand c'est le cas.
 
 ## 3/ Apprendre les prénoms
 
