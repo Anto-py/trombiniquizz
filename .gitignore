@@ -1,1 +1,9 @@
 .task
+
+# Docs de pilotage internes au vault (ne jamais pousser sur GitHub public)
+CLAUDE.md
+AGENTS.md
+SPECS.md
+PLAN.md
+IDEA.md
+BRAINSTORMING.md
