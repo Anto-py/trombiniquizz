@@ -338,12 +338,13 @@
 
 	function genererPageQuiz(eleves) {
 		var htmlContent =
-			'<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"></meta><title>Trombiquiz</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}img{height:350px;}</style><body>';
+			'<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"></meta><title>Trombiquiz</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}img{height:350px;}.photo-expiree{height:350px;max-width:400px;margin:0 auto;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;padding:1em;background:#fdecea;color:#a33;border-radius:8px;font-size:1em;}</style><body>';
 
 		for (var i = 0; i < eleves.length; i++) {
 			const eleve = eleves[i];
 			htmlContent += '<div class="eleve">';
-			htmlContent += '<img src="' + echapper(eleve.src) + '" /><br>';
+			htmlContent +=
+				'<img src="' + echapper(eleve.src) + '" onerror="avertirPhotoExpiree(this)" /><br>';
 			if (eleve.photo) {
 				htmlContent +=
 					'<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
@@ -375,6 +376,16 @@
       function montrerNomPrenom() {
         sectionsReponse[index].style.display = "block";
         show = true;
+      }
+
+      // Les photos Cabanga viennent d'une adresse S3 valable une minute
+      // seulement : au-delà, elle échoue en 403 sans que rien ne le signale.
+      function avertirPhotoExpiree(image) {
+        const avertissement = document.createElement("div");
+        avertissement.className = "photo-expiree";
+        avertissement.textContent =
+          "Photo expirée : fermez cette fenêtre et relancez Trombiquiz";
+        image.replaceWith(avertissement);
       }
 
       function eleveSuivant() {
@@ -436,6 +447,7 @@
 			"li{border:1px solid #ccc;border-radius:8px;padding:.6em;text-align:center;}" +
 			"li.retire{opacity:.35;}" +
 			"img{width:100%;height:150px;object-fit:contain;background:#f4f4f4;border-radius:4px;}" +
+			".photo-expiree{width:100%;height:150px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;padding:.5em;background:#fdecea;color:#a33;border-radius:4px;font-size:.8em;}" +
 			"input{width:100%;box-sizing:border-box;margin-top:.5em;padding:.3em;font-size:1em;text-align:center;}" +
 			".retirer{margin-top:.4em;background:none;border:none;color:#b00;cursor:pointer;font-size:.9em;}" +
 			".actions{position:sticky;bottom:0;background:#fff;padding:1em 0;margin-top:1em;border-top:1px solid #ddd;text-align:center;}" +
@@ -454,6 +466,13 @@
         const item = document.createElement("li");
         item.dataset.position = position;
         const image = document.createElement("img");
+        image.onerror = function () {
+          const avertissement = document.createElement("div");
+          avertissement.className = "photo-expiree";
+          avertissement.textContent =
+            "Photo expirée : fermez cette fenêtre et relancez Trombiquiz";
+          image.replaceWith(avertissement);
+        };
         image.src = eleve.src;
         const champ = document.createElement("input");
         champ.type = "text";
