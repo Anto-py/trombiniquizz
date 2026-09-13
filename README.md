@@ -1,95 +1,48 @@
-# 👩🏾‍🎓 Trombiquiz
+# 👩🏾‍🎓 Trombiquiz — édition Cabanga
 
-##  Un outil pour apprendre les prénoms de ses élèves
+Un outil pour apprendre rapidement les prénoms de ses élèves à partir du trombinoscope en ligne de Cabanga.
 
-Il est essentiel de connaître très rapidement les prénoms de ses élèves.
-- Les élèves sentent qu'ils sont respectés en tant que personne et cela crée tout de suite un climat de confiance.
-- La gestion de classe en cas de problème est beaucoup plus facile.
+## Mode d'emploi
 
-Je propose ici un outil, Trombiquiz, qui permet à partir d'un trombinoscope en ligne de mémoriser plus facilement les prénoms de ses élèves.
+### 1. Installer le favori
 
-Si on dispose des photos avant même le premier cours, on peut ainsi arriver en classe en connaissant déjà au moins une bonne partie des élèves, ce qui les surprend souvent de manière très positive !
-
-## Comment ça marche ?
-
-Trombiquiz est un "bookmarklet" qui ne fonctionne que si vous le mettez dans un favori afin de pouvoir cliquer dessus quand vous serez sur un trombinoscope de vos élèves.
-
-Trombiquiz fonctionne directement avec les applications suivantes : 
-- Pronote
-- Ecole Directe
-- Oneconnect
-- Moodle / Magistère
-- Cabanga (voir plus bas : détection automatique, puis vérification de la liste)
-
-Si vous utilisez un autre logiciel : vous pouvez me demander de l'intégrer à ce script (voir tout en bas de cette page).
-
-Si vous disposez des fichiers des photos des élèves, vous pouvez aussi [créer une page HTML qui fonctionnera avec Trombiquiz](creer-fichier.html).
-
-> Attention, les logiciels ci-dessus peuvent évoluer. Si Trombiquiz ne fonctionne plus, il faudra soit simplement télécharger la nouvelle version, soit me l'indiquer pour que je fasse les changements nécessaires.
-
-## 1/ Créer un nouveau favori
-
-Affichez la barre de vos favoris et glisser-déposer le lien ci-dessous dans vos favoris :
+Affichez la barre de favoris de votre navigateur, puis glissez-déposez ce lien dedans :
 
 <a href="javascript:(function(){const script=document.createElement('script');script.src='https://trombiquiz.forge.apps.education.fr/trombiquiz.min.js?'+Date.now();document.body.appendChild(script);})();">Trombiquiz</a>
 
-> **Cette copie est une version modifiée**, qui ajoute la compatibilité Cabanga. Le lien ci-dessus va chercher la version officielle sur la Forge, qui ne connaît pas Cabanga. Pour installer cette version-ci : ouvrez `trombiquizBookmarklet.js`, copiez tout son contenu, et collez-le comme adresse d'un nouveau favori. Le script y est contenu en entier, il n'y a rien à héberger.
+> Ce lien pointe vers la version officielle, qui ne connaît pas Cabanga. Pour installer la version qui le reconnaît : ouvrez `trombiquizBookmarklet.js`, copiez tout son contenu, et collez-le comme adresse d'un nouveau favori. Le script est contenu en entier dans le lien, rien n'est hébergé ailleurs.
 
-## 2/ Afficher le trombinoscope de ses élèves
+### 2. Afficher le trombinoscope de sa classe sur Cabanga
 
-Par exemple sur Pronote (version en ligne) :
+Ouvrez la page qui affiche les photos de vos élèves, et faites défiler jusqu'en bas de la page avant de continuer : une photo que le navigateur n'a pas encore chargée reste invisible pour Trombiquiz.
 
-Cliquez sur “Mes données” / “Classes/élèves” / “Trombinoscope”
+### 3. Lancer Trombiquiz et vérifier la liste
 
-![](img/helpPronote.png)
+Cliquez sur votre favori « Trombiquiz ». Cabanga étant une application fermée dont la structure interne n'est pas publique, l'outil repère les photos à leur apparence (image au format portrait, hors barres de navigation) plutôt qu'à un emplacement connu, et prend pour nom le texte qui les accompagne.
 
-Choisissez la classe et cliquez sur votre nouveau favori “Trombiquiz”
+Comme cette reconnaissance est une supposition, une page de vérification s'ouvre avant le quiz : chaque nom y est corrigeable, et tout ce qui n'est pas un élève se retire d'un clic. Le quiz ne démarre qu'une fois la liste validée, par un bouton qui choisit aussi l'ordre de présentation (aléatoire ou alphabétique).
 
-## Le cas de Cabanga
+### 4. S'entraîner à mémoriser les prénoms
 
-Cabanga est une application fermée, dont la structure interne n'est pas publique et peut changer. Trombiquiz n'y lit donc pas les photos à un endroit connu : il les **repère à leur apparence**, c'est-à-dire les images visibles au format portrait, hors barres de navigation, et prend pour nom le texte qui les accompagne.
-
-Comme cette reconnaissance est une supposition, une page de vérification s'ouvre avant le quiz : chaque nom y est corrigeable, et tout ce qui n'est pas un élève se retire d'un clic. Le quiz ne démarre qu'une fois la liste validée, par un bouton qui choisit aussi l'ordre.
-
-> Avant de cliquer sur le favori, faites défiler tout le trombinoscope jusqu'en bas : une photo que le navigateur n'a pas encore chargée est invisible pour Trombiquiz.
-
-Cette détection automatique sert aussi de filet pour les logiciels qui ne sont pas dans la liste ci-dessus : elle s'essaie sur n'importe quelle page, et se contente de dire qu'elle n'a rien trouvé quand c'est le cas.
-
-## 3/ Apprendre les prénoms
-
-### Choisir l'ordre de présentation
-
-Trombiquiz ouvre un popup et vous propose d'apprendre soit les prénoms dans l'ordre aléatoire (ordre par défaut : cliquez sur OK ou appuyez sur Entrée), soit dans l'ordre alphabétique (cliquez sur Annuler ou appuyez sur Esc).
-
-```warning
-Attention : pour que Trombiquiz fonctionne, il faut qu'on puisse voir toutes les photos des élèves sur l'écran, et si vous mettez du temps à faire votre choix de l'ordre de présentation, votre navigateur va probablement bloquer l'ouverture de la page des photos (il faudra alors soit relancer Trombiquiz et répondre plus vite, soit accepter les popups).
-``````
-
-![](img/firstMessage.png)
-
-### S'entraîner à mémoriser les prénoms
-
-Une page s'ouvre et Trombiquiz affiche une photo à la fois.
+Une page s'ouvre et affiche une photo à la fois.
 
 ![](img/studentPhoto.png)
 
-Quand vous pensez avoir retrouvé le prénom et le nom de l'élève, cliquez sur “Montrer la réponse”.
-- Raccourci clavier : ⏎ (touche “Entrée”).
+Quand vous pensez avoir retrouvé le prénom et le nom de l'élève, cliquez sur « Montrer la réponse » (ou appuyez sur Entrée).
 
 ![](img/interface.png)
 
-Si c'était facile, cliquez sur “Facile”. La photo de l'élève sera alors sortie de la liste.
-- Raccourci clavier : &rarr; (flèche droite)
+- Si c'était facile, cliquez sur « Facile » (ou flèche droite) : la photo sort de la liste.
+- Si c'était difficile, cliquez sur « Difficile » (ou flèche gauche) : la photo reste dans la liste.
 
-Si c'était difficile, cliquez sur “Difficile”. La photo reste dans la liste.
-- Raccourci clavier : &larr; (flèche gauche)
-
-Tant qu'il reste des photos dans la liste, l'outil parcourt la liste jusqu'à ce que vous ayez retrouvé tous les prénoms des élèves.
+L'outil reprend la liste jusqu'à ce que vous ayez retrouvé tous les prénoms.
 
 ![](img/endMessage.png)
 
-## Un outil libre et gratuit
+## Historique
 
-Trombiquiz est diffusé sous licence libre. N'hésitez pas à modifier le script pour qu'il fonctionne avec une autre application. Les [sources](https://forge.apps.education.fr/trombiquiz/trombiquiz.forge.apps.education.fr) sont sur la Forge des Communs Numériques Éducatifs.
+Trombiquiz est un outil de [Cédric Eyssette](https://github.com/eyssette/trombiquiz). Cette version y ajoute la compatibilité avec Cabanga.
 
-Si vous avez un problème ou une demande d'évolution de l'outil, n'hésitez pas à me contacter, en utilisant de préférence les “[tickets](https://forge.apps.education.fr/trombiquiz/trombiquiz.forge.apps.education.fr/-/issues)”. Vous pouvez sinon me contacter via les [réseaux sociaux](https://eyssette.forge.apps.education.fr).
+## Licence
+
+Trombiquiz est diffusé sous licence libre, voir [`LICENSE`](LICENSE). Pour signaler un problème ou proposer une évolution propre à cette version : [tickets sur GitHub](https://github.com/Anto-py/trombiniquizz/issues).
